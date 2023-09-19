@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <%- include('partials/header') %>
+    <%- include('partials/_add_btn') %>
+    <h6>Dashboard</h6>
+    <h3>Welcome <%= name %></h3>
+    <p>Here are your Stories</p>
+   
+    <% if (stories) { %>
+        <table class="striped">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% stories.forEach(function(story) { %>
+                    <tr>
+                        <td><a href="/stories/<%= story._id %>"><%= story.title %></a></td>
+                        <td><%= story.createdAt %></td>
+                        <td><span class="dash-status"><%= story.status %></span></td>
+                        <td></td>
+                    </tr>
+                    <% }); %>
+            </tbody>
+        </table>
+    <% } %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        M.Sidenav.init(document.querySelector('.sidenav'))
+    </script>
+
+</body>
+</html>
